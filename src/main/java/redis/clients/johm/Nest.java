@@ -98,6 +98,13 @@ public class Nest<T> {
         return incr;
     }
 
+    public Long expire(int seconds) {
+        Jedis jedis = getResource();
+        Long expire = jedis.expire(key(), seconds);
+        returnResource(jedis);
+        return expire;
+    }
+
     public List<Object> multi(TransactionBlock transaction) {
         Jedis jedis = getResource();
         List<Object> multi = jedis.multi(transaction);
@@ -262,7 +269,8 @@ public class Nest<T> {
     private void checkRedisLiveness() {
         if (jedisPool == null) {
             throw new JOhmException(
-                    "JOhm will fail to do most useful tasks without Redis");
+                    "JOhm will fail to do most useful tasks without Redis",
+                    JOhmExceptionMeta.NULL_JEDIS_POOL);
         }
     }
 }
