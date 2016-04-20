@@ -3,7 +3,7 @@ package redis.clients.johm;
 import java.io.IOException;
 import java.util.Random;
 
-import org.apache.commons.pool.impl.GenericObjectPool.Config;
+import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.junit.Assert;
 import org.junit.Before;
 
@@ -31,10 +31,10 @@ public class JOhmTestBase extends Assert {
 
     protected void startJedisEngine() {
         if (benchmarkMode) {
-            jedisPool = new JedisPool(new Config(), "localhost",
+            jedisPool = new JedisPool(new GenericObjectPoolConfig(), "localhost",
                     redisPort, 2000);
         } else {
-            jedisPool = new JedisPool(new Config(), "localhost", redisPort);
+            jedisPool = new JedisPool(new GenericObjectPoolConfig(), "localhost", redisPort);
         }
         JOhm.setPool(jedisPool);
         purgeRedis();

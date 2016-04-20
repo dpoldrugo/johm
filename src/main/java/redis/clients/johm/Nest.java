@@ -80,49 +80,49 @@ public class Nest<T> {
     public String set(String value) {
         Jedis jedis = getResource();
         String set = jedis.set(key(), value);
-        returnResource(jedis);
+        closeResource(jedis);
         return set;
     }
 
     public String get() {
         Jedis jedis = getResource();
         String string = jedis.get(key());
-        returnResource(jedis);
+        closeResource(jedis);
         return string;
     }
 
     public Long incr() {
         Jedis jedis = getResource();
         Long incr = jedis.incr(key());
-        returnResource(jedis);
+        closeResource(jedis);
         return incr;
     }
 
     public Long expire(int seconds) {
         Jedis jedis = getResource();
         Long expire = jedis.expire(key(), seconds);
-        returnResource(jedis);
+        closeResource(jedis);
         return expire;
     }
 
     public List<Object> multi(TransactionBlock transaction) {
         Jedis jedis = getResource();
         List<Object> multi = jedis.multi(transaction);
-        returnResource(jedis);
+        closeResource(jedis);
         return multi;
     }
 
     public Long del() {
         Jedis jedis = getResource();
         Long del = jedis.del(key());
-        returnResource(jedis);
+        closeResource(jedis);
         return del;
     }
 
     public Boolean exists() {
         Jedis jedis = getResource();
         Boolean exists = jedis.exists(key());
-        returnResource(jedis);
+        closeResource(jedis);
         return exists;
     }
 
@@ -130,42 +130,42 @@ public class Nest<T> {
     public String hmset(Map<String, String> hash) {
         Jedis jedis = getResource();
         String hmset = jedis.hmset(key(), hash);
-        returnResource(jedis);
+        closeResource(jedis);
         return hmset;
     }
 
     public Map<String, String> hgetAll() {
         Jedis jedis = getResource();
         Map<String, String> hgetAll = jedis.hgetAll(key());
-        returnResource(jedis);
+        closeResource(jedis);
         return hgetAll;
     }
 
     public String hget(String field) {
         Jedis jedis = getResource();
         String value = jedis.hget(key(), field);
-        returnResource(jedis);
+        closeResource(jedis);
         return value;
     }
 
     public Long hdel(String field) {
         Jedis jedis = getResource();
         Long hdel = jedis.hdel(key(), field);
-        returnResource(jedis);
+        closeResource(jedis);
         return hdel;
     }
 
     public Long hlen() {
         Jedis jedis = getResource();
         Long hlen = jedis.hlen(key());
-        returnResource(jedis);
+        closeResource(jedis);
         return hlen;
     }
 
     public Set<String> hkeys() {
         Jedis jedis = getResource();
         Set<String> hkeys = jedis.hkeys(key());
-        returnResource(jedis);
+        closeResource(jedis);
         return hkeys;
     }
 
@@ -173,21 +173,21 @@ public class Nest<T> {
     public Long sadd(String member) {
         Jedis jedis = getResource();
         Long reply = jedis.sadd(key(), member);
-        returnResource(jedis);
+        closeResource(jedis);
         return reply;
     }
 
     public Long srem(String member) {
         Jedis jedis = getResource();
         Long reply = jedis.srem(key(), member);
-        returnResource(jedis);
+        closeResource(jedis);
         return reply;
     }
 
     public Set<String> smembers() {
         Jedis jedis = getResource();
         Set<String> members = jedis.smembers(key());
-        returnResource(jedis);
+        closeResource(jedis);
         return members;
     }
 
@@ -195,42 +195,42 @@ public class Nest<T> {
     public Long rpush(String string) {
         Jedis jedis = getResource();
         Long rpush = jedis.rpush(key(), string);
-        returnResource(jedis);
+        closeResource(jedis);
         return rpush;
     }
 
     public String lset(int index, String value) {
         Jedis jedis = getResource();
         String lset = jedis.lset(key(), index, value);
-        returnResource(jedis);
+        closeResource(jedis);
         return lset;
     }
 
     public String lindex(int index) {
         Jedis jedis = getResource();
         String lindex = jedis.lindex(key(), index);
-        returnResource(jedis);
+        closeResource(jedis);
         return lindex;
     }
 
     public Long llen() {
         Jedis jedis = getResource();
         Long llen = jedis.llen(key());
-        returnResource(jedis);
+        closeResource(jedis);
         return llen;
     }
 
     public Long lrem(int count, String value) {
         Jedis jedis = getResource();
         Long lrem = jedis.lrem(key(), count, value);
-        returnResource(jedis);
+        closeResource(jedis);
         return lrem;
     }
 
     public List<String> lrange(int start, int end) {
         Jedis jedis = getResource();
         List<String> lrange = jedis.lrange(key(), start, end);
-        returnResource(jedis);
+        closeResource(jedis);
         return lrange;
     }
 
@@ -238,26 +238,26 @@ public class Nest<T> {
     public Set<String> zrange(int start, int end) {
         Jedis jedis = getResource();
         Set<String> zrange = jedis.zrange(key(), start, end);
-        returnResource(jedis);
+        closeResource(jedis);
         return zrange;
     }
 
     public Long zadd(float score, String member) {
         Jedis jedis = getResource();
         Long zadd = jedis.zadd(key(), score, member);
-        returnResource(jedis);
+        closeResource(jedis);
         return zadd;
     }
 
     public Long zcard() {
         Jedis jedis = getResource();
         Long zadd = jedis.zcard(key());
-        returnResource(jedis);
+        closeResource(jedis);
         return zadd;
     }
 
-    private void returnResource(final Jedis jedis) {
-        jedisPool.returnResource(jedis);
+    private void closeResource(final Jedis jedis) {
+        jedis.close();
     }
 
     private Jedis getResource() {
