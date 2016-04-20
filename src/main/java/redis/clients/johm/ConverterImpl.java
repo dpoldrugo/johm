@@ -85,7 +85,16 @@ public class ConverterImpl implements Converter {
         if (type.equals(Double.class) || type.equals(double.class)) {
             return new Double(value);
         }
-        if (type.equals(Long.class) || type.equals(long.class)) {
+        if (type.equals(Long.class)) {
+            if (value == null)
+                return null;
+            
+            return new Long(value);
+        }
+        if (type.equals(long.class)) {
+            if (value == null)
+                return 0L;
+            
             return new Long(value);
         }
         if (type.equals(Boolean.class) || type.equals(boolean.class)) {

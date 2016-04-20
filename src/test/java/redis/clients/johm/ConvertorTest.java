@@ -106,7 +106,7 @@ public class ConvertorTest extends Assert {
         converted = converter.getAsObject(long.class, value);
         assertTrue(converted.getClass().equals(Long.class));
         assertEquals(Long.valueOf("100"), converted);
-
+        
         // bigdecimal
         value = "10.999";
         converted = converter.getAsObject(BigDecimal.class, value);
@@ -247,5 +247,19 @@ public class ConvertorTest extends Assert {
 
         converted = converter.getAsObject(Collection.class, value);
         assertNull(converted);
+    }
+    
+    @Test
+    public void testNullableValues() {
+        String value = "true";
+        
+        // long
+        value = null;
+        Object converted = converter.getAsObject(Long.class, value);
+        assertNull(converted);
+
+        converted = converter.getAsObject(long.class, value);
+        assertTrue(converted.getClass().equals(Long.class));
+        assertEquals(Long.valueOf("0"), converted);
     }
 }
