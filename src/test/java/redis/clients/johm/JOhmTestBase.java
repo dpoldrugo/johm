@@ -20,7 +20,7 @@ public class JOhmTestBase extends Assert {
     @Before
     public void startUp() throws IOException {
         redisPort = new Random(System.currentTimeMillis()).nextInt(50000);
-        startEmbeddedRedis();
+        //startEmbeddedRedis();
         startJedisEngine();
     }
 

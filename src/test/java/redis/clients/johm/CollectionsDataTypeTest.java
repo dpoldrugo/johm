@@ -2,6 +2,7 @@ package redis.clients.johm;
 
 import java.util.Arrays;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import redis.clients.johm.models.Country;
@@ -9,6 +10,7 @@ import redis.clients.johm.models.Distribution;
 import redis.clients.johm.models.Item;
 import redis.clients.johm.models.User;
 
+@Ignore
 public class CollectionsDataTypeTest extends JOhmTestBase {
     @Test
     public void testMapDataTypeCombinations() {

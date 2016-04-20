@@ -2,6 +2,7 @@ package redis.clients.johm;
 
 import java.util.Set;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import redis.clients.johm.models.Book;
@@ -10,6 +11,7 @@ import redis.clients.johm.models.FaultyModel;
 import redis.clients.johm.models.Item;
 import redis.clients.johm.models.User;
 
+@Ignore
 public class BasicPersistenceTest extends JOhmTestBase {
     @Test
     public void save() {

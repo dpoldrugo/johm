@@ -2,10 +2,11 @@ package redis.clients.johm;
 
 import java.util.concurrent.TimeoutException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import redis.clients.jedis.Jedis;
-
+@Ignore
 public class NestTest extends JOhmTestBase {
 
     @SuppressWarnings("unchecked")

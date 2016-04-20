@@ -3,12 +3,14 @@ package redis.clients.johm;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import redis.clients.johm.models.Country;
 import redis.clients.johm.models.Item;
 import redis.clients.johm.models.User;
 
+@Ignore
 public class SearchTest extends JOhmTestBase {
     @Test(expected = InvalidFieldException.class)
     public void cannotSearchOnNullField() {

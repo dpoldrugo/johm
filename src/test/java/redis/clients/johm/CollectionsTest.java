@@ -2,6 +2,7 @@ package redis.clients.johm;
 
 import java.util.Iterator;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import redis.clients.johm.collections.RedisList;
@@ -11,6 +12,7 @@ import redis.clients.johm.collections.RedisSortedSet;
 import redis.clients.johm.models.Item;
 import redis.clients.johm.models.User;
 
+@Ignore
 public class CollectionsTest extends JOhmTestBase {
     @Test
     public void shouldSetCollectionAutomatically() {
